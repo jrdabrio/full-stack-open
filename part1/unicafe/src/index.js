@@ -5,14 +5,43 @@ const Button = ({ text, handleClick }) => (
   <button onClick={handleClick}>{text}</button>
 );
 
-const Statistics = ({ good, neutral, bad }) => (
-  <>
-    <h2>Statistics</h2>
-    <p>Good: {good}</p>
-    <p>Neutral: {neutral}</p>
-    <p>Bad: {bad}</p>
-  </>
-);
+const Statistics = ({ good, neutral, bad }) => {
+  const allVotes = () => {
+    return good + neutral + bad;
+  };
+
+  const average = () => {
+    if (allVotes()) {
+      return (
+        Math.round(((good - bad) / allVotes() + Number.EPSILON) * 100) / 100
+      );
+    } else {
+      return 0;
+    }
+  };
+
+  const positivePercentage = () => {
+    if (allVotes()) {
+      return (
+        Math.round(((good * 100) / allVotes() + Number.EPSILON) * 100) / 100
+      );
+    } else {
+      return 0;
+    }
+  };
+
+  return (
+    <>
+      <h2>Statistics</h2>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>All: {allVotes()}</p>
+      <p>Average: {average()}</p>
+      <p>Positive: {positivePercentage()}%</p>
+    </>
+  );
+};
 
 const App = () => {
   // save clicks of each button to its own state
