@@ -30,17 +30,26 @@ const Statistics = ({ good, neutral, bad }) => {
     }
   };
 
-  return (
-    <>
-      <h2>Statistics</h2>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>All: {allVotes()}</p>
-      <p>Average: {average()}</p>
-      <p>Positive: {positivePercentage()}%</p>
-    </>
-  );
+  if (allVotes() > 0) {
+    return (
+      <>
+        <h2>Statistics</h2>
+        <p>Good: {good}</p>
+        <p>Neutral: {neutral}</p>
+        <p>Bad: {bad}</p>
+        <p>All: {allVotes()}</p>
+        <p>Average: {average()}</p>
+        <p>Positive: {positivePercentage()}%</p>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <h2>Statistics</h2>
+        <p>No feedback given</p>
+      </>
+    );
+  }
 };
 
 const App = () => {
