@@ -1,9 +1,12 @@
 import React from 'react';
 
-const CountriesList = ({ countries }) => (
+const CountriesList = ({ countries, handleCountryClick }) => (
   <ul>
     {countries.map((country) => (
-      <li key={country.name.common}>{country.name.common}</li>
+      <li key={country.name.common}>
+        {country.name.common}
+        <button onClick={handleCountryClick(country.name.common)}>show</button>
+      </li>
     ))}
   </ul>
 );

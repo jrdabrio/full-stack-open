@@ -8,6 +8,8 @@ function App() {
 
   const handleFilterChange = (event) => setFilter(event.target.value);
 
+  const handleCountryClick = (countryName) => () => setFilter(countryName);
+
   let filteredCountries = countries.filter((country) =>
     country.name.common.toLowerCase().includes(filter.toLowerCase())
   );
@@ -24,7 +26,10 @@ function App() {
         <p>
           Find countries <input value={filter} onChange={handleFilterChange} />
         </p>
-        <CountriesRepresentation countries={filteredCountries} />
+        <CountriesRepresentation
+          countries={filteredCountries}
+          handleCountryClick={handleCountryClick}
+        />
       </div>
     );
 }
